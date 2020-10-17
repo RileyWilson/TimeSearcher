@@ -7,7 +7,7 @@ const myFunction = async(params) => {
     var data = await d3.csv('https://rileywilson.github.io/TimeSearcher/lib/data/top_100.csv');
 
 
-    var newData = lib.getData();
+    var newData = await lib.getData();
     
     for (var i = 0; i < data.length; i++) {
         console.log(data[i].person);
