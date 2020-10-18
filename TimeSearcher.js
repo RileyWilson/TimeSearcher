@@ -1,20 +1,26 @@
 'use strict';
-import * as lib from 'https://rileywilson.github.io/TimeSearcher/lib/lib.js'
+import * as lib from './lib/lib.js'
 
-const myFunction = async(params) => {
+const myFunction = async (params) => {
 
     // load in the csv data
-    var data = await d3.csv('https://rileywilson.github.io/TimeSearcher/lib/data/top_100.csv');
+    //var data = await d3.csv('https://rileywilson.github.io/TimeSearcher/lib/data/top_100.csv');
 
+    let [rawData, groupedData] = await lib.getData();
+    //console.log(rawData);
+    //console.log(groupedData);
+    let newSVG = d3.select("body").append("svg");
+    lib.createPlot(rawData, groupedData, newSVG);
+    //lib.addRect(newSVG);
+    //return plotWithRect;
 
-    var newData = await lib.getData();
-    
-    for (var i = 0; i < data.length; i++) {
-        console.log(data[i].person);
+    /*
+    console.log(plot);
+
+    for (var i = 0; i < newData.length; i++) {
+        console.log(newData[i].person);
     }
 
-    /*let ol = d3.create('ol');
-  
 
     var items = ol.selectAll('li').data(data).join(
         enter  => enter.append('li'),
